@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifacts Client</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous">
+    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        {% block menu %}
+            <div class="menu">
+                <div class="component">
+                    <label for="characterName">Select character: </label>
+                    <select id=characterName name="characterName">
+                        {% for character in characters.data %}
+                            <option value="{{ character.name }}">{{ character.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="component">
+                    
+                    <div class="move-action">
+                        <label for="x">x:</label>
+                        <input type="number" id="x" name="x" min="-5" max="11" value="0">
+                        <label for="y">y:</label>
+                        <input type="number" id="y" name="y" min="-5" max="15" value="0">
+                        <button id="move-btn" onclick="move()">Move</button>
+                    </div>
+
+                    <div class="separator"></div>
+                
+                    <button onclick="fight()">Fight</button>
+                
+                    <div class="separator"></div>
+
+                    <button onclick="updateImages()">Update Images</button>
+                
+                    <div class="separator"></div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block content %}
+            <div class="map-container">
+                <div id="map">
+                    
+                </div>
+            </div>
+        {% endblock %}
+    </div> 
+
+    <div id="popupOverlay" class="overlay">
+        <div id="popupContent" class="popup">
+            <button id="closePopup" class="close">X</button>
+            <div class="popup-content">
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+</body>
+</html>

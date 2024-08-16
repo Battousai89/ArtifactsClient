@@ -1,0 +1,150 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-size: 24px;
+}
+
+body .container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+body .menu {
+    background-color: black;
+    color: white;
+    width: 15%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+body .menu::-webkit-scrollbar {
+    width: 0;
+}
+
+.menu .component {
+    margin-top: 20px;
+    text-align: center;
+}
+.component button:not(#move-btn) {
+    width: 80%;
+}
+.component button,
+.component select {
+    cursor: pointer;
+    padding: 3px 5px;
+}
+
+.component button,
+.component select,
+.component input {
+    font-size: 14px;
+}
+
+.menu .separator {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+body .map-container {
+    width: 85%;
+    height: 100%;
+    background-color: aqua;
+    overflow: scroll;
+}
+
+#map {
+    display: grid;
+    grid-template-columns: repeat(16, 224px);
+    grid-template-rows: repeat(20, 224px);
+    gap: 0; /* No gap between tiles */
+}
+
+#map .tile {
+    width: 224px;
+    height: 224px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 1;
+}
+
+#map .tile svg {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    display: none;
+    fill: white;
+    cursor: pointer;
+    z-index: 3;
+}
+
+#map .tile .coords {
+    position: absolute;
+    bottom: 0%;
+    left: 2%;
+    display: none;
+    color: white;
+    font-size: 16px;
+    text-align: start;
+}
+
+#map .tile:hover svg,
+#map .tile:hover .coords {
+    display: block;
+}
+
+#map .tile #character {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;  /* Центрирование по горизонтали */
+    align-items: center;      /* Центрирование по вертикали */
+    z-index: 1000;
+}
+
+.overlay .popup {
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80%;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    font-size: 16px;
+}
+
+.overlay .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.overlay .popup-content {
+    padding: 20px;
+    text-align: left;
+}
